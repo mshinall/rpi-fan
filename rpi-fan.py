@@ -22,8 +22,11 @@ duty = 0
 oduty = 0
 fan.start(0)
 
-print("high: " + str(top) + "*C, low: " + str(btm) + "*C, multiplier: " + str(mlt) + ", delay: " + str(dly) + " secs")
-print("")
+def log(msg):
+	#print(msg)
+
+log("high: " + str(top) + "*C, low: " + str(btm) + "*C, multiplier: " + str(mlt) + ", delay: " + str(dly) + " secs")
+log("")
 while True:
 	x = x + 1
 	vctemp = os.popen("vcgencmd measure_temp").read()
@@ -31,15 +34,15 @@ while True:
 	ftemp = int(temp) * (9 / 5) + 32
 	if temp <= btm:
 		duty = 0
-		print("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F (low)")
+		log("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F (low)")
 	elif temp >= top:
 		duty = 100
-		print("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F (high)")
+		log("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F (high)")
 	else:
 		duty = int((temp - btm) * mlt) 
-		print("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F")
+		log("duty cycle: " + str(oduty) + "%, temp: " + str(temp) + "*C, " + str(ftemp) + "*F")
 	if duty != oduty and x > dly:
-		print("    duty: " + str(oduty) + " --> " + str(duty))
+		log("    duty: " + str(oduty) + " --> " + str(duty))
 		fan.ChangeDutyCycle(duty)
 		oduty = duty
 		x = 0

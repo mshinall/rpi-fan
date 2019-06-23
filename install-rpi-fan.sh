@@ -1,10 +1,24 @@
 #!/bin/bash
 
+name="rpi-fan"
+bin=$name.py
+init=$name.init.sh
 
-cp rpi-fan.py /usr/bin
-cp logrotate.d/rpi-fan /etc/logrotate.d
+echo "Stopping $name..."
+service $name stop
 
-cp fan.sh /etc/init.d
-update-rc.d rpi-fan defaults
+echo "Copying $bin to /usr/bin/$name..."
+cp $bin /usr/bin/$name
+
+echo "Copying $init to /etc/init.d/$name..."
+cp $init /etc/init.d/$name
+
+echo "Updating rc.d..."
+update-rc.d $name defaults
+
+echo "Starting $name..."
+service $name start
+
+echo "Done."
 
 
