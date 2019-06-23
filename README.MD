@@ -1,4 +1,5 @@
 rpi-fan
+
 Mathias Shinall (2019-06-22)
 
 This daemon controls a fan whose duty cycle is adjusted based on the current SoC temperature.
