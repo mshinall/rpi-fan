@@ -8,3 +8,8 @@ files:
 - rpi-fan.py (daemon script)
 - rpi-fan.init.sh (init script)
 - install-rpi-fan.sh (installer)
+
+to install:
+./install-rpi-fan.sh
+
+
