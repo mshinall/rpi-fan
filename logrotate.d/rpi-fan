@@ -1,0 +1,10 @@
+/var/log/rpi-fan {
+	compress
+	missingok
+	notifempty
+	size 1M
+	daily
+	copytruncate
+	rotate 1
+	dateext
+}
